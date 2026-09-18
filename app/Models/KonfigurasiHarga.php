@@ -10,14 +10,14 @@ class KonfigurasiHarga extends Model
 
     protected $fillable = [
         'harga_beli_gabah',
+        'ongkos_giling',
         'harga_jual_beras',
+        'rasio_konversi',
         'berlaku_mulai',
         'is_active',
     ];
 
     protected $casts = [
-        'harga_beli_gabah' => 'decimal:2',
-        'harga_jual_beras' => 'decimal:2',
         'berlaku_mulai' => 'date',
         'is_active' => 'boolean',
     ];
