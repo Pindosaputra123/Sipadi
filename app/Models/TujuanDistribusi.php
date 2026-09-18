@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class TujuanDistribusi extends Model
 {
+    use HasFactory;
+
     protected $table = 'tujuan_distribusi';
 
-    protected $fillable = [
-        'nama',
-    ];
+    protected $fillable = ['nama'];
 
-    public function stok()
+    public function stoks()
     {
-        return $this->hasMany(Stok::class, 'tujuan_distribusi_id');
+        return $this->hasMany(Stok::class);
     }
 }
