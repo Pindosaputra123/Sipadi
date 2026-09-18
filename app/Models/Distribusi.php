@@ -17,7 +17,6 @@ class Distribusi extends Model
     ];
 
     protected $casts = [
-        'jumlah_distribusi' => 'decimal:2',
         'tanggal_distribusi' => 'date',
     ];
 
