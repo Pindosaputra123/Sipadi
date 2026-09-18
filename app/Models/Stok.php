@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Stok extends Model
 {
@@ -14,22 +16,33 @@ class Stok extends Model
         'komoditas',
         'jumlah',
         'keterangan',
+        'catatan',
         'jumlah_stok',
         'status',
         'batas_minimum',
         'tanggal_update',
-        'catatan',
-        'foto_bukti',
+        'tanggal',
         'user_id',
-        'tujuan_distribusi_id',
+        'foto_bukti',
     ];
 
     protected $casts = [
-        'jumlah' => 'decimal:2',
-        'jumlah_stok' => 'decimal:2',
-        'batas_minimum' => 'decimal:2',
         'tanggal_update' => 'datetime',
+        'tanggal' => 'datetime',
     ];
+
+    public function getTanggalAttribute(?string $value): ?string
+    {
+        if ($value) {
+            return Carbon::parse($value)->format('Y-m-d H:i:s');
+        }
+
+        if (! empty($this->attributes['tanggal_update'])) {
+            return Carbon::parse($this->attributes['tanggal_update'])->format('Y-m-d H:i:s');
+        }
+
+        return null;
+    }
 
     public function gudang()
     {
@@ -43,6 +56,6 @@ class Stok extends Model
 
     public function tujuanDistribusi()
     {
-        return $this->belongsTo(TujuanDistribusi::class, 'tujuan_distribusi_id');
+        return $this->belongsTo(TujuanDistribusi::class);
     }
 }
