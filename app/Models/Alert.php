@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Alert extends Model
 {
+    use HasFactory;
+
     protected $table = 'alerts';
 
     protected $fillable = [
@@ -13,16 +16,16 @@ class Alert extends Model
         'stok_saat_ini',
         'batas_minimum',
         'status',
-        'catatan',
         'ditangani_oleh',
+        'catatan',
     ];
 
     protected $casts = [
-        'stok_saat_ini' => 'integer',
-        'batas_minimum' => 'integer',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
-    public function petugas()
+    public function handler()
     {
         return $this->belongsTo(User::class, 'ditangani_oleh');
     }
