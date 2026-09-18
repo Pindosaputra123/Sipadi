@@ -17,10 +17,6 @@ class Lahan extends Model
         'status',
     ];
 
-    protected $casts = [
-        'luas' => 'decimal:2',
-    ];
-
     public function petani()
     {
         return $this->belongsTo(Petani::class);
