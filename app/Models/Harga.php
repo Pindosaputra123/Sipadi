@@ -17,6 +17,5 @@ class Harga extends Model
 
     protected $casts = [
         'tanggal_berlaku' => 'date',
-        'harga_per_kg' => 'decimal:2',
     ];
 }
