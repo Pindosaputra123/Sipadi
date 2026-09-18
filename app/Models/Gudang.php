@@ -15,10 +15,6 @@ class Gudang extends Model
         'status',
     ];
 
-    protected $casts = [
-        'kapasitas' => 'decimal:2',
-    ];
-
     public function stok()
     {
         return $this->hasMany(Stok::class);
