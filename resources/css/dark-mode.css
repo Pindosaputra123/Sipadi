@@ -1,0 +1,434 @@
+/* ══════════════════════════════════════════════════════════════════
+   SIMHPSB – Dark Mode Stylesheet
+   Diaktifkan dengan menambahkan class "dark" pada <html>
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Transisi halus saat ganti mode */
+*, *::before, *::after {
+    transition: background-color .25s ease, border-color .25s ease,
+                color .1s ease, box-shadow .25s ease;
+}
+
+/* Nonaktifkan transisi pada elemen yang tidak perlu (cegah flicker chart) */
+canvas, img, svg, .no-transition,
+.progress-fill, .animate-in {
+    transition: none !important;
+}
+
+/* ─── CSS VARIABLES DARK MODE ─── */
+html.dark {
+    --green-900: #0a1f14;
+    --green-800: #0e2a1c;
+    --green-700: #123524;
+    --green-600: #1a5c38;
+    --green-500: #2d8a57;
+    --green-400: #3db370;
+    --green-300: #5fcc90;
+    --green-100: #0d2e1c;
+    --green-50:  #091a10;
+
+    --amber-500: #d97706;
+    --amber-100: #2d1f00;
+    --red-500:   #dc2626;
+    --red-100:   #2d0a0a;
+    --blue-500:  #2563eb;
+    --blue-100:  #0d1f3c;
+
+    /* Surface (backgrounds) */
+    --surface:   #0f1f17;
+    --surface-2: #152b1e;
+    --surface-3: #1a3326;
+
+    /* Borders & text */
+    --border:           #1e3d2a;
+    --text-primary:     #d1fae5;
+    --text-secondary:   #6fcf97;
+    --text-muted:       #4a9068;
+
+    /* Shadows lebih gelap */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.4),  0 1px 2px rgba(0,0,0,.3);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.5), 0 2px 6px rgba(0,0,0,.4);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,.7);
+}
+
+/* ─── BODY & GLOBAL ─── */
+html.dark body {
+    background: var(--surface-2);
+    color: var(--text-primary);
+}
+
+/* ─── SIDEBAR ─── */
+html.dark .sidebar {
+    background: var(--green-900);
+    border-right: 1px solid var(--border);
+}
+
+html.dark .sidebar-logo {
+    border-bottom-color: rgba(255,255,255,.06);
+}
+
+html.dark .nav-item {
+    color: rgba(255,255,255,.5);
+}
+
+html.dark .nav-item:hover {
+    background: rgba(255,255,255,.05);
+    color: #fff;
+}
+
+html.dark .nav-item.active {
+    background: linear-gradient(135deg, var(--green-700), var(--green-600));
+}
+
+html.dark .sidebar-user {
+    border-top-color: rgba(255,255,255,.06);
+}
+
+html.dark .user-card {
+    background: rgba(255,255,255,.04);
+}
+
+/* ─── TOPBAR ─── */
+html.dark .topbar {
+    background: var(--surface);
+    border-bottom-color: var(--border);
+}
+
+html.dark .topbar-breadcrumb h1 {
+    color: var(--text-primary);
+}
+
+html.dark .topbar-btn {
+    background: var(--surface-2);
+    border-color: var(--border);
+    color: var(--text-secondary);
+}
+
+html.dark .topbar-btn:hover {
+    background: var(--surface-3);
+    border-color: var(--green-400);
+    color: var(--green-400);
+}
+
+/* ─── CARDS ─── */
+html.dark .card {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+html.dark .card-header {
+    border-bottom-color: var(--border);
+}
+
+html.dark .card-title {
+    color: var(--text-primary);
+}
+
+html.dark .stat-card {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+html.dark .stat-card.green .stat-icon { background: var(--green-100); color: var(--green-400); }
+html.dark .stat-card.amber .stat-icon { background: var(--amber-100); color: var(--amber-500); }
+html.dark .stat-card.red   .stat-icon { background: var(--red-100);   color: var(--red-500); }
+html.dark .stat-card.blue  .stat-icon { background: var(--blue-100);  color: var(--blue-500); }
+
+html.dark .stat-value {
+    color: var(--text-primary);
+}
+
+/* ─── TABLE ─── */
+html.dark table.data-table thead tr {
+    background: var(--surface-2);
+    border-bottom-color: var(--border);
+}
+
+html.dark table.data-table th {
+    color: var(--text-muted);
+}
+
+html.dark table.data-table td {
+    border-bottom-color: var(--border);
+    color: var(--text-primary);
+}
+
+html.dark table.data-table tbody tr:hover {
+    background: var(--surface-3);
+}
+
+/* ─── BADGES ─── */
+html.dark .badge-green  { background: var(--green-100); color: var(--green-300); }
+html.dark .badge-amber  { background: var(--amber-100); color: #fbbf24; }
+html.dark .badge-red    { background: var(--red-100);   color: #f87171; }
+html.dark .badge-blue   { background: var(--blue-100);  color: #93c5fd; }
+html.dark .badge-gray   { background: var(--surface-3); color: var(--text-secondary); }
+
+/* ─── BUTTONS ─── */
+html.dark .btn-secondary {
+    background: var(--surface-2);
+    color: var(--text-secondary);
+    border-color: var(--border);
+}
+
+html.dark .btn-secondary:hover {
+    background: var(--surface-3);
+    color: var(--text-primary);
+}
+
+html.dark .btn-danger {
+    background: var(--red-100);
+    color: #f87171;
+    border-color: #4b1a1a;
+}
+
+html.dark .btn-danger:hover {
+    background: var(--red-500);
+    color: #fff;
+}
+
+/* ─── FORM INPUTS ─── */
+html.dark input[type=text],
+html.dark input[type=number],
+html.dark input[type=email],
+html.dark input[type=password],
+html.dark input[type=date],
+html.dark select,
+html.dark textarea {
+    background: var(--surface-2);
+    border-color: var(--border);
+    color: var(--text-primary);
+}
+
+html.dark input:focus,
+html.dark select:focus,
+html.dark textarea:focus {
+    border-color: var(--green-400);
+    box-shadow: 0 0 0 3px rgba(61,179,112,.15);
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+    color: var(--text-muted);
+}
+
+html.dark label {
+    color: var(--text-secondary);
+}
+
+html.dark .form-hint {
+    color: var(--text-muted);
+}
+
+/* ─── MODAL ─── */
+html.dark .modal {
+    background: var(--surface);
+}
+
+html.dark .modal-header {
+    border-bottom-color: var(--border);
+}
+
+html.dark .modal-title {
+    color: var(--text-primary);
+}
+
+html.dark .modal-close {
+    background: var(--surface-3);
+    color: var(--text-secondary);
+}
+
+html.dark .modal-close:hover {
+    background: var(--red-100);
+    color: #f87171;
+}
+
+html.dark .modal-footer {
+    border-top-color: var(--border);
+}
+
+/* ─── ALERT BANNERS ─── */
+html.dark .alert-banner.danger {
+    background: var(--red-100);
+    color: #f87171;
+}
+
+html.dark .alert-banner.warning {
+    background: var(--amber-100);
+    color: #fbbf24;
+}
+
+html.dark .alert-banner.success {
+    background: var(--green-100);
+    color: var(--green-300);
+}
+
+/* ─── TOOLBAR / SEARCH ─── */
+html.dark .toolbar {
+    background: var(--surface);
+    border-bottom-color: var(--border);
+}
+
+/* ─── PROGRESS BAR ─── */
+html.dark .progress-bar {
+    background: var(--surface-3);
+}
+
+/* ─── EMPTY STATE ─── */
+html.dark .empty-state {
+    color: var(--text-muted);
+}
+
+html.dark .empty-state h3 {
+    color: var(--text-secondary);
+}
+
+/* ─── NAV SECTION LABEL ─── */
+html.dark .nav-section-label {
+    color: rgba(255,255,255,.3);
+}
+
+/* ─── TOGGLE BUTTON (topbar) ─── */
+.dark-mode-toggle {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all .2s;
+    position: relative;
+}
+
+.dark-mode-toggle:hover {
+    background: var(--surface-3);
+    border-color: var(--green-300);
+    color: var(--green-600);
+}
+
+html.dark .dark-mode-toggle:hover {
+    color: var(--green-400);
+}
+
+/* icon swap */
+.dark-mode-toggle .icon-sun  { display: none; }
+.dark-mode-toggle .icon-moon { display: block; }
+html.dark .dark-mode-toggle .icon-sun  { display: block; }
+html.dark .dark-mode-toggle .icon-moon { display: none; }
+
+/* ─── LOGIN PAGE DARK MODE ─── */
+html.dark body.login-page {
+    background: #060e09;
+}
+
+html.dark .login-panel-right {
+    background: var(--surface);
+    border-left-color: var(--border);
+}
+
+html.dark .login-form-card {
+    background: transparent;
+}
+
+html.dark .login-input {
+    background: var(--surface-2);
+    border-color: var(--border);
+    color: var(--text-primary);
+}
+
+html.dark .login-input:focus {
+    border-color: var(--green-400);
+    box-shadow: 0 0 0 3px rgba(61,179,112,.15);
+}
+
+html.dark .login-label {
+    color: var(--text-secondary);
+}
+
+html.dark .login-title {
+    color: var(--text-primary);
+}
+
+html.dark .login-subtitle {
+    color: var(--text-muted);
+}
+
+/* ─── SELECT OPTION DARK ─── */
+html.dark select option {
+    background: var(--surface-2);
+    color: var(--text-primary);
+}
+
+/* ─── SCROLLBAR DARK ─── */
+html.dark ::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+
+html.dark ::-webkit-scrollbar-track {
+    background: rgba(13, 31, 23, 0.95);
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #4CF693 0%, #35D07F 100%);
+    border-radius: 12px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    transition: all .3s ease;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #5DFF9F 0%, #45E08F 100%);
+    background-clip: padding-box;
+    box-shadow: 0 0 28px rgba(76, 246, 147, 0.9);
+}
+
+html.dark ::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(180deg, #6FFF9F 0%, #50E08F 100%);
+    box-shadow: 0 0 32px rgba(76, 246, 147, 1);
+}
+
+/* ─── DARK MODE SCROLLBAR FOR SPECIFIC ELEMENTS ─── */
+html.dark .content::-webkit-scrollbar-thumb {
+    background: rgba(79, 213, 133, 0.45);
+}
+
+html.dark .content::-webkit-scrollbar-thumb:hover {
+    background: rgba(79, 213, 133, 0.8);
+}
+
+html.dark .modal-body::-webkit-scrollbar-thumb {
+    background: rgba(79, 213, 133, 0.3);
+}
+
+html.dark .modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(79, 213, 133, 0.7);
+}
+
+html.dark .table-container::-webkit-scrollbar-thumb {
+    background: rgba(79, 213, 133, 0.35);
+}
+
+html.dark .table-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(79, 213, 133, 0.75);
+}
+
+/* ─── NOTIF DOT ─── */
+html.dark .notif-dot {
+    border-color: var(--surface);
+}
+
+/* ─── SIDEBAR CLOSE BTN ─── */
+html.dark .sidebar-close {
+    background: rgba(255,255,255,.03);
+    color: rgba(255,255,255,.6);
+}
+
+html.dark .sidebar-close:hover {
+    background: rgba(255,255,255,.07);
+}
