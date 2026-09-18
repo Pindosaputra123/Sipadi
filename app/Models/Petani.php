@@ -12,19 +12,14 @@ class Petani extends Model
         'nama',
         'nik',
         'alamat',
-        'catatan',
-        'no_hp',
         'telepon',
-        'luas_lahan',
-        'komoditas',
+        'no_hp',
         'email',
         'tanggal_lahir',
         'status',
-    ];
-
-    protected $casts = [
-        'tanggal_lahir' => 'date',
-        'luas_lahan' => 'integer',
+        'luas_lahan',
+        'komoditas',
+        'catatan',
     ];
 
     public function lahan()
