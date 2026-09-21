@@ -968,6 +968,7 @@
         </a>
 
         @if($userRole !== 'petani')
+            @role('admin')
                 <span class="nav-section-label">Data Master</span>
 
                 <a href="{{ route('admin.petani.index') }}" class="nav-item {{ request()->routeIs('admin.petani.*') ? 'active' : '' }}">
@@ -979,6 +980,7 @@
                     <span class="icon"><i class="fas fa-users"></i></span>
                     Manajemen Pengguna
                 </a>
+            @endrole
 
             @if($userRole === 'petugas')
                 <span class="nav-section-label">Data Master</span>
@@ -1006,6 +1008,7 @@
                 Tujuan Distribusi
             </a>
 
+            @role('admin')
                 <span class="nav-section-label">Gudang & Harga</span>
 
                 <a href="{{ route('admin.harga.index') }}" class="nav-item {{ request()->routeIs('admin.harga.*') ? 'active' : '' }}">
@@ -1018,14 +1021,11 @@
                     Laporan
                 </a>
 
-                <a href="{{ route('admin.pengaturan.index') }}"
-                    class="nav-item {{ request()->routeIs('admin.pengaturan*') ? 'active' : '' }}">
-                    <span class="icon">
-                        <i class="fas fa-cog"></i>
-                    </span>
+                <a href="{{ route('admin.pengaturan') }}" class="nav-item {{ request()->routeIs('admin.pengaturan*') ? 'active' : '' }}">
+                    <span class="icon"><i class="fas fa-cog"></i></span>
                     Pengaturan
                 </a>
-            
+            @endrole
 
             @if(in_array($userRole, ['admin', 'petugas']))
                 <span class="nav-section-label">Monitoring</span>
