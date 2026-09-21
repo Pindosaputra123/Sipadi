@@ -1,9 +1,5 @@
 <?php
 
-// ============================================================
-//  routes/web.php  –  SIMHP Admin Routes
-// ============================================================
-
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\DashboardController;
@@ -20,18 +16,10 @@ use App\Http\Controllers\PetaniDashboardController;
 use App\Http\Controllers\ChatbotController;
 
 
-// INTRO PAGE
-Route::get('/intro', function () {
-    return view('auth.intro');
-})->name('intro');
-
-Route::get('/about', function () {
-    return view('auth.about');
-})->name('about');
 
 Route::get('/', function () {
     if (!Auth::check()) {
-        return redirect()->route('intro');
+        return redirect()->route('login');
     }
 
     if (Auth::user()->role === 'petani') {
