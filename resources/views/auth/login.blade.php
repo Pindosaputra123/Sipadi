@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login – SIMHP</title>
+    <title>Login – SIPADI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital@1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -523,10 +523,10 @@
     <div class="left-content">
         <div class="logo-big">
             <img src="https://raw.githubusercontent.com/NoahMikhailovna/foto/c45c72f9adca95001eefebd49d7581e89d0de508/padi_logo_fitted.svg"
-                 alt="SIMHP" style="width:100%;height:100%;object-fit:contain;">
+                 alt="SIPADI" style="width:100%;height:100%;object-fit:contain;">
         </div>
-        <div class="brand-name">SIMHP</div>
-        <div class="brand-tagline">Sistem Informasi Monitoring Hasil Panen<br></div>
+        <div class="brand-name">SIPADI</div>
+        <div class="brand-tagline">Sistem Informasi Pengelolaan Padi<br></div>
 
         <div class="features">
             <div class="feature-item">
@@ -559,7 +559,7 @@
     <div class="login-box">
         <div class="login-header">
             <h2>Selamat datang 👋</h2>
-            <p>Masuk ke SIMHP. Gunakan akun Anda untuk melihat panel sesuai peran.</p>
+            <p>Masuk ke SIPADI. Gunakan akun Anda untuk melihat panel sesuai peran.</p>
         </div>
 
         @if($errors->any())
@@ -618,8 +618,8 @@
         </form>
 
         <div class="login-footer">
-            <p>SIMHP v1.2 &nbsp;·&nbsp; Kelompok 4 UKRI 2025</p>
-            <p style="margin-top:4px;">Universitas Kebangsaan Republik Indonesia</p>
+            <p>SIPADI &nbsp;·&nbsp; Kelompok Goat Pensiun</p>
+            <p style="margin-top:4px;">Universitas Singaperbangsa Karawang</p>
         </div>
     </div>
 </div>
