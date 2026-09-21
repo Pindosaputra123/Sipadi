@@ -1,17 +1,12 @@
-{{-- ====================================================
-     SIMHP Chat Widget — HPSBBot
-     Include di layout admin.blade.php sebelum </body>
-==================================================== --}}
-
 {{-- Quick Ball / Thin Edge Handle --}}
-<div id="chat-edge-handle" onclick="expandFab()" title="Tampilkan HPSBBot">
+<div id="chat-edge-handle" onclick="expandFab()" title="Tampilkan BOTANI">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;">
         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
     </svg>
 </div>
 
 {{-- Floating Chat Button --}}
-<div id="chat-fab" class="hidden" onclick="chatToggle()" title="Chat dengan HPSBBot">
+<div id="chat-fab" class="hidden" onclick="chatToggle()" title="Chat dengan BOTANI">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
     </svg>
@@ -24,8 +19,8 @@
         <div style="display:flex;align-items:center;gap:10px;">
             <div id="chat-bot-avatar">🤖</div>
             <div>
-                <div style="color:white;font-weight:700;font-size:14px;line-height:1.2;">HPSBBot</div>
-                <div style="color:rgba(255,255,255,0.75);font-size:11px;">Asisten AI SIMHP</div>
+                <div style="color:white;font-weight:700;font-size:14px;line-height:1.2;">BOTANI</div>
+                <div style="color:rgba(255,255,255,0.75);font-size:11px;">Asisten AI SIPADI</div>
             </div>
         </div>
         <button onclick="closeChat()" id="chat-close-btn" title="Tutup chat">
@@ -38,7 +33,7 @@
 
     {{-- Messages --}}
     <div id="chat-messages">
-        <div class="chat-bubble bot">Halo Kak! Saya HPSBBot, asisten AI untuk SIMHP. Ada yang bisa saya bantu terkait stok dan harga? 🌾</div>
+        <div class="chat-bubble bot">Halo Bro! Saya BOTANI, asisten AI untuk SIPADI. Ada yang bisa saya bantu terkait stok dan harga? 🌾</div>
     </div>
 
     {{-- Input --}}
@@ -338,10 +333,10 @@
             });
             const data = await res.json();
             loading.className = 'chat-bubble bot';
-            loading.textContent = data.reply || 'Maaf Kak, tidak ada respons. Coba lagi ya.';
+            loading.textContent = data.reply || 'Maaf Bro, tidak ada respons. Coba lagi ya.';
         } catch {
             loading.className = 'chat-bubble bot';
-            loading.textContent = 'Maaf Kak, gagal menghubungi server.';
+            loading.textContent = 'Maaf Bro, gagal menghubungi server.';
         }
         messages.scrollTop = messages.scrollHeight;
     };
