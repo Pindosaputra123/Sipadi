@@ -22,7 +22,7 @@
 <div class="card" style="margin-bottom:24px;">
     <div class="card-header" style="display:flex; justify-content:space-between; align-items:center;">
         <div class="card-title">Riwayat Konfigurasi Harga</div>
-        <a class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Konfigurasi</a>
+        <a href="{{ route('admin.harga.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Konfigurasi</a>
     </div>
     <div class="table-container">
         <table class="data-table">
