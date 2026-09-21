@@ -59,6 +59,14 @@
                 <button type="submit" class="btn btn-primary" style="flex-shrink:0;">
                     <i class="fas fa-filter"></i> Tampilkan
                 </button>
+                <div style="display:flex;gap:8px;flex-shrink:0;">
+                    <a href="{{ route('admin.laporan.export', array_merge(request()->all(), ['format'=>'pdf'])) }}" class="btn btn-secondary">
+                        <i class="fas fa-file-pdf"></i> PDF
+                    </a>
+                    <a href="{{ route('admin.laporan.export', array_merge(request()->all(), ['format'=>'excel'])) }}" class="btn btn-secondary">
+                        <i class="fas fa-file-excel"></i> Excel
+                    </a>
+                </div>
             </div>
         </form>
     </div>
@@ -239,6 +247,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+const laporanChartData = {
+    labels: @json($chartLabels),
+    datasets: @json($chartDatasets)
+};
 
 new Chart(document.getElementById('chartLaporan').getContext('2d'), {
     type: 'bar',
