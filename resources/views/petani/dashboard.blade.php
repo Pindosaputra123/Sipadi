@@ -271,4 +271,7 @@
         </div>
     </div>
 </div>
+
+@include('chat-widget')
+
 @endsection
