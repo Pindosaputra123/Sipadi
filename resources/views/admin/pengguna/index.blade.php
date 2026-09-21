@@ -58,7 +58,7 @@
                         </td>
                         <td>{{ $user->created_at->format('d M Y') }}</td>
                         <td style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-                            <a class="btn btn-secondary btn-sm">
+                            <a href="{{ route('admin.pengguna.edit', $user->id) }}" class="btn btn-secondary btn-sm">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
                             <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $user->id }}, '{{ addslashes($user->name) }}')">
@@ -74,6 +74,34 @@
             </tbody>
         </table>
     </div>
+
+    {{-- PAGINATION --}}
+    @if($users->hasPages())
+        <div style="padding:16px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;border-top:1px solid var(--border,#e2e8f0);">
+            <div style="width:100%;text-align:center;font-size:12px;color:var(--text-muted);">
+                Menampilkan {{ $users->firstItem() }}–{{ $users->lastItem() }} dari {{ $users->total() }} pengguna
+            </div>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px;">
+                @if($users->onFirstPage())
+                    <span style="padding:6px 10px;min-width:66px;text-align:center;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:var(--surface-3);color:var(--text-muted);font-size:12px;cursor:not-allowed;">First</span>
+                    <span style="padding:6px 10px;min-width:66px;text-align:center;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:var(--surface-3);color:var(--text-muted);font-size:12px;cursor:not-allowed;"><i class="fas fa-chevron-left"></i></span>
+                @else
+                    <a href="{{ $users->url(1) }}" style="padding:6px 10px;min-width:66px;text-align:center;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:var(--surface-3);color:var(--text-primary);font-size:12px;text-decoration:none;">First</a>
+                    <a href="{{ $users->previousPageUrl() }}" style="padding:6px 10px;min-width:66px;text-align:center;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:var(--surface-3);color:var(--text-primary);font-size:12px;text-decoration:none;"><i class="fas fa-chevron-left"></i></a>
+                @endif
+                @foreach($users->getUrlRange(max(1,$users->currentPage()-2), min($users->lastPage(),$users->currentPage()+2)) as $page => $url)
+                    <a href="{{ $url }}" style="padding:6px 10px;border-radius:6px;font-size:12px;text-decoration:none;background:{{ $page == $users->currentPage() ? 'var(--green-600)' : 'var(--surface-3)' }};color:{{ $page == $users->currentPage() ? 'white' : 'var(--text-primary)' }};">{{ $page }}</a>
+                @endforeach
+                @if($users->hasMorePages())
+                    <a href="{{ $users->nextPageUrl() }}" style="padding:6px 10px;min-width:66px;text-align:center;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:var(--surface-3);color:var(--text-primary);font-size:12px;text-decoration:none;"><i class="fas fa-chevron-right"></i></a>
+                    <a href="{{ $users->url($users->lastPage()) }}" style="padding:6px 10px;min-width:66px;text-align:center;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:var(--surface-3);color:var(--text-primary);font-size:12px;text-decoration:none;">Last</a>
+                @else
+                    <span style="padding:6px 10px;min-width:66px;text-align:center;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:var(--surface-3);color:var(--text-muted);font-size:12px;cursor:not-allowed;"><i class="fas fa-chevron-right"></i></span>
+                    <span style="padding:6px 10px;min-width:66px;text-align:center;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:var(--surface-3);color:var(--text-muted);font-size:12px;cursor:not-allowed;">Last</span>
+                @endif
+            </div>
+        </div>
+    @endif
 </div>
 
 <!-- Modal Konfirmasi Hapus -->
