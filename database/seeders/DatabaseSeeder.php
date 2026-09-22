@@ -123,25 +123,6 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $gudang2 = Gudang::updateOrCreate(
-            ['nama_gudang' => 'Gudang Cabang'],
-            [
-                'lokasi' => 'Kota B',
-                'kapasitas' => 3000,
-                'status' => 'aktif',
-            ]
-        );
-
-
-        Alert::updateOrCreate(
-            ['komoditas' => 'Beras', 'stok_saat_ini' => 400],
-            [
-                'batas_minimum' => 500,
-                'status' => 'aktif',
-                'ditangani_oleh' => User::where('role', 'petugas')->first()->id,
-            ]
-        );
-
         // Seed tujuan distribusi (dropdown options)
         $this->call(TujuanDistribusiSeeder::class);
     }

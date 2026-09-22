@@ -87,11 +87,11 @@
             <div class="card-body" style="display:flex;flex-direction:column;gap:14px;">
                 <div>
                     <label style="display:block;margin-bottom:6px;font-weight:600;font-size:12.5px;color:var(--text-muted);">Nama Sistem</label>
-                    <input type="text" value="SIMHP" disabled>
+                    <input type="text" value="SIPADI" disabled>
                 </div>
                 <div>
-                    <label style="display:block;margin-bottom:6px;font-weight:600;font-size:12.5px;color:var(--text-muted);">Versi</label>
-                    <input type="text" value="v1.2" disabled>
+                    <label style="display:block;margin-bottom:6px;font-weight:600;font-size:12.5px;color:var(--text-muted);">Kelompok</label>
+                    <input type="text" value="Goat Pensiun" disabled>
                 </div>
             </div>
         </div>
