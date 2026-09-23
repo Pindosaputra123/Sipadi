@@ -2,18 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Alert;
-use App\Models\Distribusi;
 use App\Models\Gudang;
-use App\Models\Harga;
 use App\Models\Lahan;
-use App\Models\Panen;
 use App\Models\Petani;
-use App\Models\Stok;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Database\Seeders\RoleAndPermissionSeeder;
-use Database\Seeders\TujuanDistribusiSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleAndPermissionSeeder::class);
 
+        // ==========================================
+        // USER ADMIN
+        // ==========================================
+
         User::updateOrCreate(
             ['email' => 'admin@example.com'],
             [
@@ -32,6 +29,10 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('password'),
             ]
         );
+
+        // ==========================================
+        // USER PETUGAS
+        // ==========================================
 
         User::updateOrCreate(
             ['email' => 'petugas@example.com'],
@@ -42,23 +43,9 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        User::updateOrCreate(
-            ['email' => 'petani1@example.com'],
-            [
-                'name' => 'Petani1',
-                'role' => 'petani',
-                'password' => bcrypt('password'),
-            ]
-        );
-
-        User::updateOrCreate(
-            ['email' => 'petani2@example.com'],
-            [
-                'name' => 'Petani2',
-                'role' => 'petani',
-                'password' => bcrypt('password'),
-            ]
-        );
+        // ==========================================
+        // DATA PETANI
+        // ==========================================
 
         $petani1 = Petani::updateOrCreate(
             ['email' => 'petani1@example.com'],
@@ -92,7 +79,35 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $lahan1 = Lahan::updateOrCreate(
+        // ==========================================
+        // USER PETANI
+        // ==========================================
+
+        User::updateOrCreate(
+            ['email' => 'petani1@example.com'],
+            [
+                'name' => 'Petani1',
+                'role' => 'petani',
+                'petani_id' => $petani1->id,
+                'password' => bcrypt('password'),
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'petani2@example.com'],
+            [
+                'name' => 'Petani2',
+                'role' => 'petani',
+                'petani_id' => $petani2->id,
+                'password' => bcrypt('password'),
+            ]
+        );
+
+        // ==========================================
+        // LAHAN PETANI 1
+        // ==========================================
+
+        Lahan::updateOrCreate(
             ['nama_lahan' => 'Lahan Sawah A'],
             [
                 'petani_id' => $petani1->id,
@@ -103,7 +118,11 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $lahan2 = Lahan::updateOrCreate(
+        // ==========================================
+        // LAHAN PETANI 2
+        // ==========================================
+
+        Lahan::updateOrCreate(
             ['nama_lahan' => 'Lahan Sawah B'],
             [
                 'petani_id' => $petani2->id,
@@ -114,7 +133,11 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $gudang1 = Gudang::updateOrCreate(
+        // ==========================================
+        // GUDANG
+        // ==========================================
+
+        Gudang::updateOrCreate(
             ['nama_gudang' => 'Gudang Sentral'],
             [
                 'lokasi' => 'Kota A',
@@ -123,7 +146,10 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // Seed tujuan distribusi (dropdown options)
+        // ==========================================
+        // TUJUAN DISTRIBUSI
+        // ==========================================
+
         $this->call(TujuanDistribusiSeeder::class);
     }
 }
