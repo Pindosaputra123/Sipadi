@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Petani;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -11,9 +12,7 @@ use Illuminate\Validation\ValidationException;
 class LoginController extends Controller
 {
     /**
-     * Show the application's login form.
-     *
-     * @return \Illuminate\View\View
+     * Menampilkan halaman login.
      */
     public function showLoginForm()
     {
@@ -21,50 +20,111 @@ class LoginController extends Controller
     }
 
     /**
-     * Handle a login request to the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * Memproses login pengguna.
      */
     public function login(Request $request)
     {
+        // Validasi input login
         $request->validate([
             'identifier' => 'required|string',
-            'password' => 'required|string',
+            'password'   => 'required|string',
         ]);
 
         $identifier = $request->input('identifier');
+
+        // Mencari user berdasarkan email atau nama
         $userQuery = User::query();
 
         if (filter_var($identifier, FILTER_VALIDATE_EMAIL)) {
+
             $userQuery->where('email', $identifier);
+
         } else {
+
             $lowerIdentifier = mb_strtolower($identifier, 'UTF-8');
-            $userQuery->where(function ($query) use ($identifier, $lowerIdentifier) {
+
+            $userQuery->where(function ($query) use (
+                $identifier,
+                $lowerIdentifier
+            ) {
                 $query->where('name', $identifier)
-                      ->orWhereRaw('LOWER(name) = ?', [$lowerIdentifier])
-                      ->orWhereHas('petani', function ($query) use ($identifier, $lowerIdentifier) {
-                          $query->where('nama', $identifier)
-                                ->orWhereRaw('LOWER(nama) = ?', [$lowerIdentifier]);
-                      });
+                    ->orWhereRaw('LOWER(name) = ?', [$lowerIdentifier])
+                    ->orWhereHas('petani', function ($query) use (
+                        $identifier,
+                        $lowerIdentifier
+                    ) {
+                        $query->where('nama', $identifier)
+                            ->orWhereRaw(
+                                'LOWER(nama) = ?',
+                                [$lowerIdentifier]
+                            );
+                    });
             });
         }
 
         $user = $userQuery->first();
 
-        if (!$user || !Auth::attempt(['email' => $user->email, 'password' => $request->input('password')], $request->boolean('remember'))) {
+        // Periksa email/nama dan password
+        if (
+            !$user ||
+            !Auth::attempt([
+                'email' => $user->email,
+                'password' => $request->input('password')
+            ], $request->boolean('remember'))
+        ) {
             throw ValidationException::withMessages([
-                'identifier' => [trans('auth.failed')],
+                'identifier' => [
+                    'Email/nama atau password salah.'
+                ],
             ]);
         }
 
+        // Ambil user yang sudah berhasil login
+        $authenticatedUser = Auth::user();
+
+        // ==========================================
+        // PEMERIKSAAN STATUS AKUN PETANI
+        // ==========================================
+
+        if ($authenticatedUser->role === 'petani') {
+
+            $petani = Petani::find($authenticatedUser->petani_id);
+
+            // Jika data petani tidak ditemukan atau nonaktif
+            if (
+                !$petani ||
+                strtolower(trim($petani->status ?? '')) !== 'aktif'
+            ) {
+
+                // Batalkan proses login
+                Auth::logout();
+
+                // Hapus session login
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                throw ValidationException::withMessages([
+                    'identifier' => [
+                        'Akun Anda belum diaktifkan oleh admin. Silakan hubungi admin untuk aktivasi.'
+                    ],
+                ]);
+            }
+        }
+
+        // ==========================================
+        // LOGIN BERHASIL
+        // ==========================================
+
         $request->session()->regenerate();
 
-        return redirect()->intended($this->redirectToByRole(Auth::user()));
+        return redirect()->intended(
+            $this->redirectToByRole($authenticatedUser)
+        );
     }
 
+    /**
+     * Mengarahkan pengguna berdasarkan role.
+     */
     protected function redirectToByRole($user)
     {
         if ($user->role === 'petani') {
@@ -83,10 +143,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Log the current user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * Logout pengguna.
      */
     public function logout(Request $request)
     {
