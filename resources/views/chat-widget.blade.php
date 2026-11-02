@@ -33,7 +33,7 @@
 
     {{-- Messages --}}
     <div id="chat-messages">
-        <div class="chat-bubble bot">Halo Bro! Saya BOTANI, asisten AI untuk SIPADI. Ada yang bisa saya bantu terkait stok dan harga? 🌾</div>
+        <div class="chat-bubble bot">Halo Bos! Saya BOTANI, asisten AI untuk SIPADI. Ada yang bisa saya bantu terkait stok, harga, dan seputar pertanian lainnya? 🌾</div>
     </div>
 
     {{-- Input --}}
