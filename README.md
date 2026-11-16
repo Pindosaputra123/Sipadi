@@ -1,59 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Tentang Sipadi
+<b>Sipadi</b> adalah platform digital terintegrasi berbasis Website yang dirancang khusus untuk mendukung pengelolaan hasil panen serta distribusi padi secara terdigitalisasi dan terpusat.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+### Fitur Sipadi:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+#### Admin
+-   <b>Dashboard</b><br>
+    Ringkasan stok gabah & beras, grafik tren panen 6 bulan, target pasar vs realisasi, alert aktif, harga gabah terkini.
+-   <b>Pencatatan Panen</b><br>
+    Input hasil gabah + foto bukti wajib, snapshot harga otomatis, gabah langsung masuk stok gudang.
+-   <b>Stok Gudang</b><br>
+    Transaksi masuk/keluar (foto bukti wajib), saldo real-time, beras input manual setelah giling, riwayat lengkap.
+-   <b>Alert Otomatis</b><br>
+    Notifikasi banner merah saat stok ≤ batas minimum (konfigurasi terpisah untuk beras & gabah), mark as handled.
+-   <b>Manajemen Harga</b><br>
+    Konfigurasi harga beli gabah per kg & harga jual beras per kg, riwayat perubahan harga.
+-   <b>Data Petani</b><br>
+    CRUD data petani mitra, data lahan, kontak, riwayat panen & total penghasilan gabah.
+-   <b>Laporan</b><br>
+    Rekapitulasi panen & stok per periode — ekspor PDF & Excel.
+-   <b>Tujuan Distribusi</b><br>
+    Manajemen daftar lokasi pengiriman (MBG, toko mitra).
+-   <b>Chatbot Botani</b><br>
+    Asisten AI berbasis Groq + Llama 3.3 70B, tanya stok & harga real-time.
+-   <b>Pengaturan Sistem</b><br>
+    Konfigurasi batas minimum alert, manajemen pengguna (Admin only).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+#### Petugas
+-   <b>Dashboard</b><br>
+    Ringkasan stok gabah & beras, grafik tren panen 6 bulan, target pasar vs realisasi, alert aktif, harga gabah terkini.
+-   <b>Pencatatan Panen</b><br>
+    Input hasil gabah + foto bukti wajib, snapshot harga otomatis, gabah langsung masuk stok gudang.
+-   <b>Stok Gudang</b><br>
+    Transaksi masuk/keluar (foto bukti wajib), saldo real-time, beras input manual setelah giling, riwayat lengkap.
+-   <b>Alert Otomatis</b><br>
+    Notifikasi banner merah saat stok ≤ batas minimum (konfigurasi terpisah untuk beras & gabah), mark as handled.
+-   <b>Data Petani</b><br>
+    CRUD data petani mitra, data lahan, kontak, riwayat panen & total penghasilan gabah.
+-   <b>Laporan</b><br>
+    Rekapitulasi panen & stok per periode — ekspor PDF & Excel.
+-   <b>Tujuan Distribusi</b><br>
+    Manajemen daftar lokasi pengiriman (MBG, toko mitra).
+-   <b>Chatbot Botani</b><br>
+    Asisten AI berbasis Groq + Llama 3.3 70B, tanya stok & harga real-time.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### Petani
+-   <b>Dashboard</b><br>
+    Ringkasan catatan panen, dan harga gabah terkini.
+-   <b>Monitoring Panen</b><br>
+    Monitoring hasil gabah, dan snapshot harga otomatis.
+-   <b>Chatbot Botani</b><br>
+    Asisten AI berbasis Groq + Llama 3.3 70B, tanya stok & harga real-time.
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Installation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### 1. Clone the repository
+```sh
+https://github.com/Pindosaputra123/Sipadi.git
+```
+#### 2. Change Directory
+```sh
+cd Sipadi
+```
+#### 3. Copy .env
+```sh
+cp .env.example .env
+```
+#### 4. Configure .env
+```sh
+FILESYSTEM_DISK=public
+```
+#### 5. Install depedencies
+```sh
+composer install
+```
+#### 6. Generate Key
+```sh
+php artisan key:generate
+```
+#### 7. Run Symlink
+```sh
+php artisan storage:link
+```
+#### 8. Migrate database
+```sh
+php artisan migrate
+```
+#### 9. Database seeders
+```sh
+php artisan db:seed
+```
+#### 10. Run application
+```sh
+php artisan serve
+```
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+##### <i><b>Note:<br>Admin = email: admin@example.com & password: password <br> Petugas = email: petugas@example.com & password: password <br> Petani = email: petani@example.com & password: password</b></i>
